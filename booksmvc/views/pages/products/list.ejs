@@ -1,0 +1,39 @@
+<h1>List of products</h1>
+
+<div id="products" class="container">
+  <table class="table table-striped">
+    <thead class="thead-light">
+      <th>Id</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Created At</th>
+      <th>Updated At</th>
+      <th colspan="2">Actions</th>
+    </thead>
+    <tbody>
+      <% 
+        var editUrl = "edit"; 
+        var deleteUrl = "delete"; 
+      %>
+    <% for (let i = 0; i < products.length; i++) { %>
+        <% 
+            var myDelete = "/product/" + deleteUrl + "/" + products[i].id;
+            var myEdit   = "/product/" + editUrl   + "/" + products[i].id; 
+        %>
+      
+          <tr>
+            <td><%=products[i].id%></td>
+            <td><%=products[i].name%></td>
+            <td><%=products[i].category%></td>
+            <td><%=new Date(products[i].createdAt).toLocaleString()%></td>
+            <td><%=new Date(products[i].updatedAt).toLocaleString()%></td>
+            <td><a href="<%=myEdit%>">Edit</a></td>
+            <td><a href="<%=myDelete%>">Delete</a></td>
+          </tr>   
+    <% } %>
+  </tbody>
+</table>
+</div>
+
+<a href="/products">List of Products</a>
+<a href="/product/new">Add new product</a>
